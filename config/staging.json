@@ -1,0 +1,16 @@
+{
+  "_comment": "Staging / UAT environment configuration.",
+  "workspace_name": "Sales-Analytics-Staging",
+  "workspace_id": "SET_VIA_SECRET_STAGING_FABRIC_WORKSPACE_ID",
+  "description": "Staging workspace – mirrors production data shape. Used for UAT sign-off before production release.",
+  "environment_tier": "staging",
+  "capacity_sku": "F4",
+  "item_parameter_overrides": {
+    "lakehouse_name": "SalesLakehouse_Staging",
+    "sql_connection_string": "Server=staging-sql.database.windows.net;Database=SalesDB_Staging",
+    "data_refresh_schedule": "0 4 * * *"
+  },
+  "notification_channels": {
+    "teams_channel": "Fabric-CI-Alerts-Staging"
+  }
+}

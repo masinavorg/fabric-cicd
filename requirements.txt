@@ -1,0 +1,19 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Fabric CI/CD – Python dependencies
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Microsoft Fabric CI/CD library (official Microsoft open-source tool)
+# Provides FabricWorkspace, publish_all_items, unpublish_all_orphan_items
+# GitHub: https://github.com/microsoft/fabric-cicd
+# Docs:   https://microsoft.github.io/fabric-cicd/
+fabric-cicd>=0.1.0
+
+# Azure Identity – provides DefaultAzureCredential (OIDC, SP, CLI, MI)
+# Used by fabric-cicd and our smoke test / snapshot scripts
+azure-identity>=1.17.0
+
+# HTTP client – used in smoke_tests.py and snapshot.py for Fabric REST API calls
+requests>=2.32.0
+
+# Linting (CI only – not needed at runtime)
+flake8>=7.0.0

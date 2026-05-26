@@ -1,0 +1,27 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# ── Snapshots (local only – do not commit to git) ─────────────────────────────
+.snapshots/
+
+# ── Secrets / local environment overrides ────────────────────────────────────
+.env
+.env.local
+*.local.json
+
+# ── macOS / Windows ───────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDEs ──────────────────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+
+# ── Fabric workspace exports (not tracked in source control) ──────────────────
+*.pbix
+*.xlsx

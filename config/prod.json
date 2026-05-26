@@ -1,0 +1,16 @@
+{
+  "_comment": "Production environment configuration. Capacity must be F8 or higher for production SLA.",
+  "workspace_name": "Sales-Analytics-Prod",
+  "workspace_id": "SET_VIA_SECRET_PROD_FABRIC_WORKSPACE_ID",
+  "description": "Production workspace – live dashboards and reports consumed by the business.",
+  "environment_tier": "prod",
+  "capacity_sku": "F8",
+  "item_parameter_overrides": {
+    "lakehouse_name": "SalesLakehouse_Prod",
+    "sql_connection_string": "Server=prod-sql.database.windows.net;Database=SalesDB_Prod",
+    "data_refresh_schedule": "0 2 * * *"
+  },
+  "notification_channels": {
+    "teams_channel": "Fabric-CI-Alerts-Prod"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "_comment": "Development environment configuration. Workspace IDs are stored as GitHub Secrets; this file stores non-sensitive metadata.",
+  "workspace_name": "Sales-Analytics-Dev",
+  "workspace_id": "SET_VIA_SECRET_DEV_FABRIC_WORKSPACE_ID",
+  "description": "Development workspace – freely breakable, deployed on every push to 'dev' branch.",
+  "environment_tier": "dev",
+  "capacity_sku": "F2",
+  "item_parameter_overrides": {
+    "lakehouse_name": "SalesLakehouse_Dev",
+    "sql_connection_string": "Server=dev-sql.database.windows.net;Database=SalesDB_Dev",
+    "data_refresh_schedule": "0 6 * * 1-5"
+  },
+  "notification_channels": {
+    "teams_channel": "Fabric-CI-Alerts-Dev"
+  }
+}

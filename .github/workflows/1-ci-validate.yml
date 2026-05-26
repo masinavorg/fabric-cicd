@@ -1,0 +1,74 @@
+name: "CI – Validate & Lint"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TRIGGER: Runs on every Pull Request that targets dev, staging, or main.
+# PURPOSE: Catch config/syntax errors BEFORE anything is deployed.
+# ─────────────────────────────────────────────────────────────────────────────
+on:
+  pull_request:
+    branches:
+      - dev
+      - staging
+      - main
+    paths:
+      - "fabric_items/**"
+      - "config/**"
+      - "scripts/**"
+
+jobs:
+  validate:
+    name: Validate Fabric Items & Config
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Python (fabric-cicd requires Python 3.10+)
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # 3. Install project dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4. Validate all JSON config files are well-formed
+      - name: Validate JSON config files
+        run: |
+          echo "Validating environment config files..."
+          python -c "
+          import json, sys, glob
+          errors = []
+          for f in glob.glob('config/*.json'):
+              try:
+                  json.load(open(f))
+                  print(f'  ✅ {f} — valid JSON')
+              except json.JSONDecodeError as e:
+                  errors.append(f'{f}: {e}')
+                  print(f'  ❌ {f} — {e}')
+          if errors:
+              sys.exit(1)
+          "
+
+      # 5. Validate all .platform files inside fabric_items/
+      - name: Validate .platform metadata files
+        run: python scripts/validate_config.py
+
+      # 6. Check Python scripts for syntax errors
+      - name: Lint Python scripts
+        run: |
+          pip install flake8
+          flake8 scripts/ --max-line-length=120 --ignore=E501
+
+      # 7. Summary
+      - name: Validation summary
+        if: always()
+        run: |
+          echo "──────────────────────────────────"
+          echo "Validation complete."
+          echo "If all checks passed, this PR is safe to merge."
+          echo "──────────────────────────────────"

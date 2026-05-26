@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "SalesLakehouse",
+    "description": "Delta Lake storage for raw (Bronze), cleaned (Silver), and aggregated (Gold) sales data."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d4e5f6a7-b8c9-0123-defa-123456789003"
+  }
+}
