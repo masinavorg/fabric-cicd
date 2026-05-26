@@ -61,7 +61,6 @@ jobs:
     #    - Deployment branch restrictions (only 'main' branch allowed)
     environment:
       name: production
-      url: "https://app.fabric.microsoft.com/groups/${{ secrets.PROD_FABRIC_WORKSPACE_ID }}"
 
     steps:
       - name: Checkout repository
