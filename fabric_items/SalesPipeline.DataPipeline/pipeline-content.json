@@ -1,44 +1,11 @@
 {
-  "name": "SalesPipeline",
-  "objectId": "00000000-0000-0000-0000-000000000000",
   "properties": {
     "activities": [
       {
-        "name": "CopySalesData",
-        "type": "Copy",
-        "typeProperties": {
-          "source": {
-            "type": "AzureSqlSource",
-            "sqlReaderQuery": "SELECT * FROM dbo.SalesOrders WHERE ModifiedDate >= '@{addDays(utcNow(), -1)}'"
-          },
-          "sink": {
-            "type": "LakehouseTableSink",
-            "tableActionOption": "Append",
-            "tableName": "bronze_sales"
-          }
-        },
-        "inputs": [{ "referenceName": "SqlConnectionDataset", "type": "DatasetReference" }],
-        "outputs": [{ "referenceName": "LakehouseDataset", "type": "DatasetReference" }]
-      },
-      {
         "name": "RunSalesNotebook",
         "type": "TridentNotebook",
-        "dependsOn": [
-          { "activity": "CopySalesData", "dependencyConditions": ["Succeeded"] }
-        ],
         "typeProperties": {
           "notebookId": "{{notebook_id_SalesNotebook}}",
-          "workspaceId": "{{workspace_id}}"
-        }
-      },
-      {
-        "name": "RefreshSemanticModel",
-        "type": "RefreshDataset",
-        "dependsOn": [
-          { "activity": "RunSalesNotebook", "dependencyConditions": ["Succeeded"] }
-        ],
-        "typeProperties": {
-          "datasetId": "{{semantic_model_id_SalesModel}}",
           "workspaceId": "{{workspace_id}}"
         }
       }
