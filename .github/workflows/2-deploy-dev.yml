@@ -77,19 +77,3 @@ jobs:
           AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
         run: python scripts/deploy.py
-
-      - name: Post-deploy notification (Teams)
-        if: success()
-        uses: aliencube/microsoft-teams-actions@v0.8.0
-        with:
-          webhook_uri: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          title: "✅ Fabric Dev Deployment Succeeded"
-          summary: "Branch `${{ github.ref_name }}` deployed to Dev by @${{ github.actor }}"
-
-      - name: Post-failure notification (Teams)
-        if: failure()
-        uses: aliencube/microsoft-teams-actions@v0.8.0
-        with:
-          webhook_uri: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          title: "❌ Fabric Dev Deployment FAILED"
-          summary: "Branch `${{ github.ref_name }}` — see run ${{ github.run_id }}"
