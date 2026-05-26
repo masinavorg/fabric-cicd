@@ -1,14 +1,12 @@
 name: "CI – Validate & Lint"
 
 # ─────────────────────────────────────────────────────────────────────────────
-# TRIGGER: Runs on every Pull Request that targets dev, staging, or main.
+# TRIGGER: Runs on every Pull Request that targets the main branch.
 # PURPOSE: Catch config/syntax errors BEFORE anything is deployed.
 # ─────────────────────────────────────────────────────────────────────────────
 on:
   pull_request:
     branches:
-      - dev
-      - staging
       - main
     paths:
       - "fabric_items/**"
