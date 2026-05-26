@@ -52,7 +52,6 @@ ITEM_TYPES_IN_SCOPE = [
     "Lakehouse",          # Delta Lake + SQL analytics endpoint
     "Warehouse",          # Fabric SQL warehouse
     "SparkJobDefinition", # Batch Spark jobs
-    "MLModel",            # Machine learning models
     "MLExperiment",       # ML experiments (MLflow)
     "Eventstream",        # Real-time event streams
     "KQLDatabase",        # Kusto Query Language database
