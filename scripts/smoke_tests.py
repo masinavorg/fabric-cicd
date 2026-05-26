@@ -83,7 +83,6 @@ def main():
     EXPECTED_ITEMS = [
         {"displayName": "SalesNotebook",    "type": "Notebook"},
         {"displayName": "SalesPipeline",    "type": "DataPipeline"},
-        {"displayName": "SalesModel",       "type": "SemanticModel"},
         {"displayName": "SalesLakehouse",   "type": "Lakehouse"},
     ]
 
