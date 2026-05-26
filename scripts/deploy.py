@@ -28,6 +28,7 @@ from pathlib import Path
 # GitHub: https://github.com/microsoft/fabric-cicd
 # Docs:   https://microsoft.github.io/fabric-cicd/
 from fabric_cicd import FabricWorkspace, publish_all_items, unpublish_all_orphan_items
+from azure.identity import DefaultAzureCredential
 
 # ── Logging setup ─────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -124,6 +125,8 @@ def main():
     #   3. Managed Identity
     #   4. Azure CLI (great for local development: `az login`)
     #
+    credential = DefaultAzureCredential()
+
     workspace = FabricWorkspace(
         workspace_id=workspace_id,
         repository_directory=repository_directory,
@@ -131,6 +134,7 @@ def main():
         # environment is used to resolve parameter replacements in item definitions
         # (e.g. swap connection strings / SQL endpoints per environment)
         environment=environment,
+        token_credential=credential,
     )
 
     if dry_run:
