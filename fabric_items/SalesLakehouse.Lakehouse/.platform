@@ -3,7 +3,7 @@
   "metadata": {
     "type": "Lakehouse",
     "displayName": "SalesLakehouse",
-    "description": "Delta Lake storage for raw (Bronze), cleaned (Silver) and aggregated (Gold) sales data."
+    "description": "Delta Lake storage for raw(Bronze), cleaned (Silver) and aggregated (Gold) sales data."
   },
   "config": {
     "version": "2.0",
